@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "292982405025",
+    "project_id": "fablab-5e476",
+    "storage_bucket": "fablab-5e476.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292982405025:android:88438c3ec95cf1bc50bde0",
+        "android_client_info": {
+          "package_name": "com.example.fablab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292982405025-7b9pdpd2tmbvs7b4kh0m2eje88h0v76j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmDzFw3KNxfVPzKxz0395BakCrUTz5yUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292982405025-7b9pdpd2tmbvs7b4kh0m2eje88h0v76j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
