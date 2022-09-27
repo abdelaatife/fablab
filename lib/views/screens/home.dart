@@ -1,6 +1,6 @@
 import 'package:fablab/core/constant/style.dart';
 import 'package:fablab/data/static/card_data.dart';
-import 'package:fablab/views/widgets/cart.dart';
+import 'package:fablab/views/widgets/card.dart';
 import 'package:fablab/views/widgets/tite_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

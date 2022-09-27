@@ -1,6 +1,8 @@
 // static data for cards
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../views/screens/student_form.dart';
 import '../model/cart_model.dart';
 
 const String path = 'assets/images/';
@@ -10,7 +12,18 @@ List<CardModel> cardData = [
     description: "Register as a student",
     image: '${path}student.png',
     color: const Color(0xFFFFDCD7),
-    onTap: () {},
+    onTap: () => Get.to(() => const StudentForm(),
+        transition: Transition.zoom,
+        arguments: [
+          {
+            'title': 'Student',
+            'description': 'Register as a student',
+            'image': '${path}student.png',
+            'color': const Color(0xFFFFDCD7),
+          }
+        ],
+        duration:
+            const Duration(milliseconds: 250)),
   ),
   CardModel(
     titel: 'Teacher',
