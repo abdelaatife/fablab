@@ -44,6 +44,11 @@ dependencies:
   dropdown_button2: ^1.8.2
   file_picker: ^5.2.0+1
   firebase_storage: ^10.3.9
+  very_good_analysis: ^3.1.0
+  multi_image_layout: ^0.0.5
+  expandable_text: ^2.3.0
+  like_button: ^2.0.5
+  comment_tree: ^0.3.0
 
 dev_dependencies:
   flutter_test:

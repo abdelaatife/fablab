@@ -20,7 +20,7 @@ abstract class StudentFormController
   // firebase variables
   FirebaseFirestore firestore =
       FirebaseFirestore.instance;
-  CollectionReference Students = FirebaseFirestore
+  CollectionReference students = FirebaseFirestore
       .instance
       .collection('Students');
 //get file picker controller
@@ -125,7 +125,7 @@ class StudentFormControllerImpl
   @override
   addUser() async {
     try {
-      Students.add({
+      students.add({
         "fullname": fullnameController.text,
         "cardnumber": cardnumberController.text,
         "phone": phoneController.text,

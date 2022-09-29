@@ -1,8 +1,7 @@
 // this is a dropdown menu widget
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fablab/views/screens/student_form.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/studentform_controller.dart';

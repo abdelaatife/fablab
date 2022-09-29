@@ -3,8 +3,7 @@
 // this widget require 4 parameter
 // the 4 parameter is the card model
 
-import 'dart:ffi';
-
+ 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

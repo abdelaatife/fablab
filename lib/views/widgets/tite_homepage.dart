@@ -1,7 +1,7 @@
 // this page contain the header of home page
 
 import 'package:flutter/material.dart';
-import '../../core/constant/style.dart';
+ import '../../core/constant/style.dart';
 
 class AppTitelHomePage extends StatelessWidget {
   const AppTitelHomePage({Key? key})
@@ -25,7 +25,7 @@ class AppTitelHomePage extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Register Now in Fablab and Release your Project',
+              'Explore and Get Deeper in FabLab',
               style: TextStyle(
                   color: AppColor.text
                       .withOpacity(.7),
@@ -35,6 +35,12 @@ class AppTitelHomePage extends StatelessWidget {
             ),
           ],
         ),
+        const Padding(
+          padding:
+              EdgeInsets.symmetric(vertical: 15),
+          child: Divider(),
+        ),
+        
       ],
     );
   }

@@ -1,6 +1,5 @@
  
-import 'package:fablab/views/widgets/custombutton.dart';
-import 'package:fablab/views/widgets/studentform.dart';
+ import 'package:fablab/views/widgets/studentform.dart';
  import 'package:flutter/material.dart';
 import 'package:get/get.dart';
  
@@ -33,7 +32,7 @@ class StudentForm extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: Get.height * 0.27,
+            height: Get.height * 0.18,
             width: Get.width,
             child: Row(
               mainAxisAlignment:

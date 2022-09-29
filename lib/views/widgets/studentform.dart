@@ -83,9 +83,7 @@ class AppStudentForm extends StatelessWidget {
 
             AppCustomButton(
               label: 'Submit',
-              onTap: () {
-                print(studentFormControllerImpl
-                    .yearController);
+              onTap: () { 
                 studentFormControllerImpl
                     .validtor();
               },
