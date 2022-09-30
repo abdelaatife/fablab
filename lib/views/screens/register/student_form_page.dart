@@ -1,5 +1,5 @@
  
- import 'package:fablab/views/widgets/studentform.dart';
+ import 'package:fablab/views/widgets/register/studentform.dart';
  import 'package:flutter/material.dart';
 import 'package:get/get.dart';
  

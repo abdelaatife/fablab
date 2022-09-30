@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-import '../../controller/fillepicker_controller.dart';
+import '../../../controller/register/fillepicker_controller.dart';
 
 class AppPickFile extends StatelessWidget {
   const AppPickFile({Key? key}) : super(key: key);

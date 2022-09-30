@@ -1,5 +1,5 @@
  
-import 'package:fablab/controller/fillepicker_controller.dart';
+import 'package:fablab/controller/register/fillepicker_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';

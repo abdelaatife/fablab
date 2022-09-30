@@ -4,7 +4,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
  import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/studentform_controller.dart';
+import '../../../controller/register/studentform_controller.dart';
 
 class AppDropDawonList extends StatelessWidget {
   const AppDropDawonList({Key? key})

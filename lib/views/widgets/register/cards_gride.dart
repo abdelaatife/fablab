@@ -1,7 +1,8 @@
-import 'package:fablab/views/widgets/card.dart';
+
+import 'package:fablab/views/widgets/register/card.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/static/card_data.dart';
+import '../../../data/static/card_data.dart';
 
 class AppCardsGrid extends StatelessWidget {
   const AppCardsGrid({Key? key}) : super(key: key);

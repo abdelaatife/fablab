@@ -1,11 +1,12 @@
-import 'package:fablab/views/screens/comments.dart';
+ import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:like_button/like_button.dart';
+ import 'package:like_button/like_button.dart';
 
 class AppPostReactionBarViewer
     extends StatelessWidget {
-  const AppPostReactionBarViewer({Key? key})
+  final int index;
+  const AppPostReactionBarViewer(
+      {Key? key, required this.index})
       : super(key: key);
 
   @override
@@ -15,7 +16,7 @@ class AppPostReactionBarViewer
           MainAxisAlignment.spaceEvenly,
       children: [
         LikeButton(
-          likeCount: 0,
+          likeCount:  data['$index']!.likes,
           size: 30,
           likeBuilder: (isLiked) {
             return Icon(
@@ -46,12 +47,11 @@ class AppPostReactionBarViewer
           },
         ),
 
-       
-     Container(
+        Container(
           width: 1,
           height: 25,
-            color: Colors.grey.shade400,
-         ) ,
+          color: Colors.grey.shade400,
+        ),
         // comment
         LikeButton(
           likeCount: 0,
@@ -59,14 +59,12 @@ class AppPostReactionBarViewer
           onTap: (isLiked) {
             // Get.to(const CommentsPage());
             return Future.value(false);
-            
           },
           likeBuilder: (isLiked) {
             return const Icon(
               Icons.comment_outlined,
               color: Colors.grey,
               size: 25,
-              
             );
           },
           countBuilder: (count, isLiked, text) {

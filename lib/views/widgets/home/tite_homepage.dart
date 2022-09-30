@@ -1,7 +1,7 @@
 // this page contain the header of home page
 
 import 'package:flutter/material.dart';
- import '../../core/constant/style.dart';
+ import '../../../core/constant/style.dart';
 
 class AppTitelHomePage extends StatelessWidget {
   const AppTitelHomePage({Key? key})
@@ -18,6 +18,7 @@ class AppTitelHomePage extends StatelessWidget {
               style: TextStyle(
                   color: AppColor.text,
                   fontSize: 27,
+                   fontFamily: AppText.bold,
                   fontWeight: FontWeight.bold),
             ),
           ],
@@ -29,9 +30,10 @@ class AppTitelHomePage extends StatelessWidget {
               style: TextStyle(
                   color: AppColor.text
                       .withOpacity(.7),
-                  height: 2,
+                  height: 1.5,
                   fontSize: 15,
-                  fontWeight: FontWeight.w400),
+                  fontFamily: AppText.medium,
+                  ),
             ),
           ],
         ),

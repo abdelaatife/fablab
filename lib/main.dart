@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FABLAB',
       theme: ThemeData(
+        fontFamily: 'Poppins',
         
       ),
 home: const  Dashboard()

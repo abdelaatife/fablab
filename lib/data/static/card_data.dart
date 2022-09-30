@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../views/screens/student_form.dart';
+import '../../views/screens/register/student_form_page.dart';
 import '../model/cart_model.dart';
 
 const String path = 'assets/images/';

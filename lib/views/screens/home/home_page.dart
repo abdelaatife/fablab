@@ -1,10 +1,11 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:fablab/core/constant/style.dart';
-import 'package:fablab/views/widgets/post/imageviewer.dart';
-import 'package:fablab/views/widgets/post/postheaderviewer.dart';
-import 'package:fablab/views/widgets/post/reactionbarviewer.dart';
-import 'package:fablab/views/widgets/post/textviewer.dart';
-import 'package:fablab/views/widgets/tite_homepage.dart';
+import 'package:fablab/data/static/data.dart';
+import 'package:fablab/views/widgets/home/post/imageviewer.dart';
+import 'package:fablab/views/widgets/home/post/postheaderviewer.dart';
+import 'package:fablab/views/widgets/home/post/reactionbarviewer.dart';
+import 'package:fablab/views/widgets/home/post/textviewer.dart';
+import 'package:fablab/views/widgets/home/tite_homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
@@ -48,7 +49,7 @@ class HomePage extends StatelessWidget {
             // header of home page
             const Padding(
               padding: EdgeInsets.only(
-                left: 15 , top:  10),
+                  left: 15, top: 10),
               child: AppTitelHomePage(),
             ),
 
@@ -60,34 +61,41 @@ class HomePage extends StatelessWidget {
                     height: 10,
                   );
                 },
-                itemCount: 2,
+                itemCount: data.length,
                 itemBuilder:
                     (BuildContext context,
                         int index) {
                   return Container(
                     width: Get.width,
-                    color:
-                        Color.fromARGB(150, 221, 238, 255),
+                    color: const Color.fromARGB(
+                        150, 221, 238, 255),
                     margin: const EdgeInsets.only(
                         bottom: 10),
                     padding:
                         const EdgeInsets.all(10),
                     child: Column(
-                      children: const [
-                        AppPostHeadViewer(),
-                        SizedBox(
+                      children: [
+                        AppPostHeadViewer(
+                          index: index +1 ,
+                        ),
+                        const SizedBox(
                           height: 15,
                         ),
-                        AppPostTextViewer(),
-                        SizedBox(
+                        AppPostTextViewer(
+                          index: index+1,
+                        ),
+                        const SizedBox(
                           height: 15,
                         ),
-                        AppPostImageViewer(),
-                        SizedBox(
+                        AppPostImageViewer(
+                          index: index +1,
+                        ),
+                        const SizedBox(
                           height: 15,
                         ),
-                        AppPostReactionBarViewer(),
-                        
+                        AppPostReactionBarViewer(
+                          index: index +1,
+                        ),
                       ],
                     ),
                   );

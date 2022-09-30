@@ -1,11 +1,11 @@
 //this is the student form widget
 // in this widget there is list of form fields
 
-import 'package:fablab/controller/studentform_controller.dart';
-import 'package:fablab/views/widgets/custombutton.dart';
-import 'package:fablab/views/widgets/dropdownmanu.dart';
-import 'package:fablab/views/widgets/pickefile.dart';
-import 'package:fablab/views/widgets/textform.dart';
+import 'package:fablab/controller/register/studentform_controller.dart';
+import 'package:fablab/views/widgets/register/custombutton.dart';
+import 'package:fablab/views/widgets/register/dropdownmanu.dart';
+import 'package:fablab/views/widgets/register/pickefile.dart';
+import 'package:fablab/views/widgets/register/textform.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';

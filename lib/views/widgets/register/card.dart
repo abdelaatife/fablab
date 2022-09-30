@@ -8,14 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppCart extends StatelessWidget {
-  final String titel, description, image;
+  final String titel, image;
+  final String ? description;
   final Color color;
   final void Function() onTap;
   const AppCart({
     Key? key,
     required this.titel,
     required this.onTap,
-    required this.description,
+      this.description,
     required this.image,
     required this.color,
   }) : super(key: key);
@@ -54,7 +55,7 @@ class AppCart extends StatelessWidget {
                               FontWeight.bold),
                     ),
                     Text(
-                      description,
+                      description!,
                       style: const TextStyle(
                         color: Colors.black,
                         fontSize: 13,

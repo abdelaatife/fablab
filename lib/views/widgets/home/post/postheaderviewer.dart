@@ -1,19 +1,23 @@
+import 'package:fablab/core/constant/style.dart';
+import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:like_button/like_button.dart';
 
 class AppPostHeadViewer extends StatelessWidget {
-  const AppPostHeadViewer({Key? key})
+  final int index;
+  const AppPostHeadViewer(
+      {Key? key, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           radius: 22,
-          backgroundColor: Color(0xFF58AEE1),
-          backgroundImage: AssetImage(
+          backgroundColor: data['$index']!.color,
+          backgroundImage: const AssetImage(
             'assets/images/icon.png',
           ),
         ),
@@ -24,17 +28,19 @@ class AppPostHeadViewer extends StatelessWidget {
           crossAxisAlignment:
               CrossAxisAlignment.start,
           children: [
-            const Text(
-              "DR. Ahmed",
-              style: TextStyle(
+            Text(
+              data['$index']!.personName,
+              style: const TextStyle(
                   fontSize: 17,
                   height: 1.5,
+                  fontFamily: AppText.medium,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+              "${data['$index']!.date.day}/${data['$index']!.date.month}/${data['$index']!.date.year}",
               style: const TextStyle(
                   fontSize: 13,
+                   fontFamily: AppText.medium,
                   color: Colors.grey),
             ),
           ],

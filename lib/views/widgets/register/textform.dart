@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppCustomForm extends StatelessWidget {
   final String hintText;
-  final String titleText;
+  final String ? titleText;
   final IconData? icon;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -11,7 +11,7 @@ class AppCustomForm extends StatelessWidget {
   const AppCustomForm({
     Key? key,
     required this.hintText,
-    required this.titleText,
+      this.titleText,
     this.icon,
     this.controller,
     this.keyboardType,
@@ -30,7 +30,7 @@ class AppCustomForm extends StatelessWidget {
                 MainAxisAlignment.start,
             children: [
               Text(
-                titleText,
+                titleText ?? "",
                 style: const TextStyle(
                     color: AppColor.text,
                     fontSize: 13,
