@@ -1,4 +1,5 @@
- 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fablab/controller/home/posts_controller.dart';
 import 'package:fablab/controller/register/fillepicker_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,85 +10,37 @@ class Test extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FilepickerControllerImpl fillepickerControllerImpl =
-       Get.put(FilepickerControllerImpl());
+    
+PostsControllerImpl postsController =
+        Get.put(PostsControllerImpl());
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Test'),
-      ),
-      body: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: const [
-                Text(
-                    'Upload a Discrption for your project' ),
-              ],
-            ),
-          ),
-         const  SizedBox(
-            height: 10,
-           
-             
-          ),
-          InkWell(
-            onTap: () => fillepickerControllerImpl.pickFile(),
-               
-            child: Container(
-              height: 60,
-              width: 300,
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: Colors.black,
-                    style: BorderStyle.solid),
-                borderRadius:
-                    BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment:
-                    MainAxisAlignment
-                        .spaceAround,
-                children: const [
-                  Text('Upload File'),
-                  Icon(Ionicons
-                      .cloud_upload_outline)
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+      body: StreamBuilder<QuerySnapshot>(
+          stream: postsController.collectionStream,
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot>
+                  snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Something went wrong');
+            }
+    
+            if (snapshot.connectionState ==
+                ConnectionState.waiting) {
+              return const  Text("Loading");
+            }
+    
+            return ListView(
+              children: snapshot.data!.docs
+                  .map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()!
+                        as Map<String, dynamic>;
+                return ListTile(
+                  title: Text(data['title']),
+                  
+                );
+              }).toList(),
+            );
+          }),
     );
   }
 }
-/* ElevatedButton(
-              onPressed: () async {
-                PlatformFile pickedfile;
-
-                FilePickerResult? result =
-                    await FilePicker.platform
-                        .pickFiles();
-
-                if (result != null) {
-                  var fileName =
-                      result.files.single.name;
-                  File file = File(
-                      result.files.single.path!);
-                  try {
-                    Reference reference =
-                        FirebaseStorage.instance
-                            .ref()
-                            .child(fileName);
-
-                    reference.putFile(file);
-                  } catch (e) {
-                    print(e);
-                  }
-                } else {
-                  // TODO: show "file not selected" snack bar
-                }
-              },
-              child: const Text('Test')), */

@@ -51,6 +51,10 @@ dependencies:
   comment_tree: ^0.3.0
   anim_search_bar: ^2.0.2
   material_floating_search_bar: ^0.3.7
+  badges: ^2.0.3
+  flutter_slidable: ^2.0.0
+  firebase_database: ^9.1.6
+  jiffy: ^5.0.0
   
 dev_dependencies:
   flutter_test:

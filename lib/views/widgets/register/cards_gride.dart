@@ -9,30 +9,28 @@ class AppCardsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Expanded(
-                child: GridView.builder(
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.80,
-                  ),
-                  itemCount: cardData.length,
-                  itemBuilder:
-                      (BuildContext context,
-                          int index) {
-                    return AppCart(
-                      titel:
-                          cardData[index].titel,
-                      description: cardData[index]
-                          .description,
-                      image:
-                          cardData[index].image,
-                      color:
-                          cardData[index].color,
-                      onTap: cardData[index].onTap,
-                    );
-                  },
-                ),
-              );
+    return  GridView.builder(
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.80,
+      ),
+      itemCount: cardData.length,
+      itemBuilder:
+          (BuildContext context,
+              int index) {
+        return AppCart(
+          titel:
+              cardData[index].titel,
+          description: cardData[index]
+              .description,
+          image:
+              cardData[index].image,
+          color:
+              cardData[index].color,
+          onTap: cardData[index].onTap,
+        );
+      },
+    );
   }
 }

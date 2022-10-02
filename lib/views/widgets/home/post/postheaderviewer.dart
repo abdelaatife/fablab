@@ -1,13 +1,21 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fablab/core/constant/style.dart';
 import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:like_button/like_button.dart';
 
 class AppPostHeadViewer extends StatelessWidget {
-  final int index;
+   final Color color;
+  final String personName;
+  final Timestamp date;
   const AppPostHeadViewer(
-      {Key? key, required this.index})
+      {Key? key,
+       required this.color,
+      required this.personName,
+      required this.date, })
       : super(key: key);
 
   @override
@@ -16,7 +24,7 @@ class AppPostHeadViewer extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 22,
-          backgroundColor: data['$index']!.color,
+          backgroundColor: color,
           backgroundImage: const AssetImage(
             'assets/images/icon.png',
           ),
@@ -29,7 +37,7 @@ class AppPostHeadViewer extends StatelessWidget {
               CrossAxisAlignment.start,
           children: [
             Text(
-              data['$index']!.personName,
+             personName,
               style: const TextStyle(
                   fontSize: 17,
                   height: 1.5,
@@ -37,10 +45,10 @@ class AppPostHeadViewer extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              "${data['$index']!.date.day}/${data['$index']!.date.month}/${data['$index']!.date.year}",
-              style: const TextStyle(
+              Jiffy(date.toDate()).format('dd/MM/yyyy'),
+                style: const TextStyle(
                   fontSize: 13,
-                   fontFamily: AppText.medium,
+                  fontFamily: AppText.medium,
                   color: Colors.grey),
             ),
           ],
@@ -57,7 +65,7 @@ class AppPostHeadViewer extends StatelessWidget {
                 return Icon(
                   Ionicons.bookmark_outline,
                   color: isLiked
-                      ? Colors.green
+                      ? AppColor.secondry
                       : Colors.grey,
                   size: 25,
                 );

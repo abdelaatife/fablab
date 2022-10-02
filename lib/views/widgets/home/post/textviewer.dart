@@ -4,9 +4,10 @@ import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
 
 class AppPostTextViewer extends StatelessWidget {
-  final int index;
+   final String text;
+   final String title;
   const AppPostTextViewer(
-      {Key? key, required this.index})
+      {Key? key,   required this.text, required this.title})
       : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class AppPostTextViewer extends StatelessWidget {
         Row(
           children: [
             Text(
-              data['$index']!.title,
+              title,
               style: const TextStyle(
                   fontSize: 20,
                   fontFamily: AppText.bold,
@@ -29,7 +30,7 @@ class AppPostTextViewer extends StatelessWidget {
           height: 10,
         ),
         ExpandableText(
-          data['$index']!.description,
+          text,
           expandText: 'show more',
           collapseText: 'show less',
           maxLines: 2,

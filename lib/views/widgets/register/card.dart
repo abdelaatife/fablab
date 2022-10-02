@@ -3,20 +3,20 @@
 // this widget require 4 parameter
 // the 4 parameter is the card model
 
- 
+import 'package:fablab/core/constant/style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AppCart extends StatelessWidget {
   final String titel, image;
-  final String ? description;
+  final String? description;
   final Color color;
   final void Function() onTap;
   const AppCart({
     Key? key,
     required this.titel,
     required this.onTap,
-      this.description,
+    this.description,
     required this.image,
     required this.color,
   }) : super(key: key);
@@ -51,6 +51,8 @@ class AppCart extends StatelessWidget {
                       titel,
                       style: const TextStyle(
                           fontSize: 20,
+                          fontFamily:
+                              AppText.light,
                           fontWeight:
                               FontWeight.bold),
                     ),
@@ -58,6 +60,7 @@ class AppCart extends StatelessWidget {
                       description!,
                       style: const TextStyle(
                         color: Colors.black,
+                        fontFamily: AppText.light,
                         fontSize: 13,
                       ),
                     ),

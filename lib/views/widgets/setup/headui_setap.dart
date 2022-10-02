@@ -1,4 +1,4 @@
-import 'package:fablab/views/screens/setup/search_input.dart';
+import 'package:fablab/views/widgets/setup/search_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
