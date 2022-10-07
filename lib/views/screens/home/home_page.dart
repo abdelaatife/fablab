@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:expandable_text/expandable_text.dart';
 import 'package:fablab/controller/home/posts_controller.dart';
 import 'package:fablab/core/constant/postavatarcolor.dart';
 import 'package:fablab/core/constant/style.dart';
-import 'package:fablab/data/static/data.dart';
 import 'package:fablab/views/widgets/home/post/imageviewer.dart';
 import 'package:fablab/views/widgets/home/post/postheaderviewer.dart';
 import 'package:fablab/views/widgets/home/post/reactionbarviewer.dart';
@@ -21,12 +19,7 @@ class HomePage extends StatelessWidget {
     PostsControllerImpl postsController =
         Get.put(PostsControllerImpl());
     return Scaffold(
-        floatingActionButton:
-            FloatingActionButton(
-          onPressed: () {
-            postsController.getPostData();
-          },
-        ),
+        
         backgroundColor: AppColor.background,
         extendBodyBehindAppBar: true,
         appBar: AppBar(

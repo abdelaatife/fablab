@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../core/constant/style.dart';
 
 class AppSetupCard extends StatelessWidget {
-  const AppSetupCard({Key? key})
-      : super(key: key);
+  final  String   title , description , image;
+  const AppSetupCard({Key? key, required this.title, required this.description, required this.image}) : super(key: key);
+      
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +16,10 @@ class AppSetupCard extends StatelessWidget {
           Expanded(
             flex: 4,
             child: Container(
-              decoration: const BoxDecoration(
+              decoration:   BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                      "https://3dandprint.eu/storage/productoptions/16/60094_large.jpg.webp"),
+                      image),
                 ),
               ),
             ),
@@ -30,18 +31,18 @@ class AppSetupCard extends StatelessWidget {
               child: Column(
                 mainAxisAlignment:
                     MainAxisAlignment.center,
-                children: const [
+                children:   [
                   Text(
-                    "3D Printing",
-                    style: TextStyle(
+                   title,
+                    style: const TextStyle(
                         color: Colors.black,
                         fontFamily: AppText.light,
                         fontSize: 17),
                   ),
                   Text(
-                    "lorem ipsum orem ipsumorem ips morem",
+                    description,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontFamily: AppText.light,
                     ),
