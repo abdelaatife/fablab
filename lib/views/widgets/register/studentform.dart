@@ -75,7 +75,9 @@ class AppStudentForm extends StatelessWidget {
                         .supervisorIdController,
                 titleText: 'Supervisor id'),
 
-            const AppPickFile(),
+            const AppPickFile(
+              label: 'Upload your project document',
+            ),
 
             const SizedBox(
               height: 20,

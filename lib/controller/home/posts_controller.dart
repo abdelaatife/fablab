@@ -1,3 +1,4 @@
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -5,6 +6,7 @@ abstract class PostsController
     extends GetxController {
   FirebaseFirestore firestore =
       FirebaseFirestore.instance;
+  FirebasePerformance performance = FirebasePerformance.instance;
   CollectionReference posts = FirebaseFirestore
       .instance
       .collection('posts');
@@ -12,14 +14,14 @@ abstract class PostsController
       FirebaseFirestore.instance
           .collection('posts')
           .snapshots();
-  getPostData();
+   bool isLiked = false;
   likeCounter( bool isLiked , String postId);
+  likePost(String postId);
 }
 
 class PostsControllerImpl
     extends PostsController {
-  @override
-  getPostData() {}
+   
 
   @override
   likeCounter(isLiked , postId) {
@@ -37,4 +39,24 @@ class PostsControllerImpl
       
     }
   }
+  @override
+  likePost(postId) {
+    Trace trace = performance.newTrace('like_post_trace');
+    trace.start();
+
+    if (isLiked) {
+      posts.doc(postId).update({
+        'likes': FieldValue.increment(-1),
+      });
+      isLiked = false;
+      update();
+    } else {
+      posts.doc(postId).update({
+        'likes': FieldValue.increment(1),
+      });
+      isLiked = true;
+      update();
+    }
+    trace.stop();
+  } 
 }

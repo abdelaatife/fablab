@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../../../controller/materilaspage_controller.dart';
 import '../../../core/constant/style.dart';
 
 class AppSearchInput extends StatelessWidget {
@@ -9,8 +11,16 @@ class AppSearchInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MaterialsPageControllerImpl
+        materialsPageController =
+        Get.put(MaterialsPageControllerImpl());
     return TextField(
+      controller: materialsPageController.searchcontroller,
+      onChanged: (value) {
+        materialsPageController.search(value);
+      },
       decoration: InputDecoration(
+ 
         filled: true,
         contentPadding: const EdgeInsets.all(0),
         fillColor: const Color(0xFFF7FBFF),

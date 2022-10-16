@@ -1,6 +1,7 @@
 // this page contain the header of home page
 
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:flutter/material.dart';
 import '../../../core/constant/style.dart';
 
 class AppTitelHomePage extends StatelessWidget {
@@ -9,31 +10,29 @@ class AppTitelHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   User user  = FirebaseAuth.instance.currentUser!;
     return Column(
-       children: [
+      children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment:
+              MainAxisAlignment.end,
           children: [
             Container(
               height: 70,
               width: 70,
               decoration: const BoxDecoration(
-                color: AppColor.secondry,
-              
-              borderRadius: BorderRadius.only(
-                 
-                  bottomLeft:
-                      Radius.circular(40)
-              )
-              ),
+                  color: AppColor.secondry,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft:
+                          Radius.circular(40))),
             ),
           ],
         ),
         Row(
-          children: const [
+          children:   [
             Text(
-              'Hey Abdellatif,',
-              style: TextStyle(
+              'Hey ${user.displayName!.split(' ')[0]} ,',
+              style: const  TextStyle(
                   color: AppColor.text,
                   fontSize: 27,
                   fontFamily: AppText.bold,
@@ -56,8 +55,7 @@ class AppTitelHomePage extends StatelessWidget {
           ],
         ),
         const Padding(
-          padding:
-              EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: 10),
           child: Divider(),
         ),
       ],

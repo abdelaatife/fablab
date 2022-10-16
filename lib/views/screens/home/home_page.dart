@@ -1,5 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fablab/controller/home/posts_controller.dart';
+import 'package:fablab/controller/notifcation_controller.dart';
 import 'package:fablab/core/constant/postavatarcolor.dart';
 import 'package:fablab/core/constant/style.dart';
 import 'package:fablab/views/widgets/home/post/imageviewer.dart';
@@ -11,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../register/notification_page.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -18,8 +22,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     PostsControllerImpl postsController =
         Get.put(PostsControllerImpl());
+    NotificationControllerImpl
+        notificationControllerImpl =
+        Get.put(NotificationControllerImpl());
+    
     return Scaffold(
-        
         backgroundColor: AppColor.background,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -27,19 +34,63 @@ class HomePage extends StatelessWidget {
               color: Colors.black),
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: const Icon(
-            Ionicons.menu_outline,
-            size: 30,
-          ),
+          leading: GetBuilder<
+                  NotificationControllerImpl>(
+              init: notificationControllerImpl,
+              builder: (controller) {
+                return Badge(
+                  // variable badge content
+                  showBadge:
+                      controller.lenght == 0
+                          ? false
+                          : true,
+                  badgeContent: Text(
+                    controller.lenght.toString(),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 11),
+                  ),
+                  ///////////////////////////
+                  badgeColor: Colors.red[400]!,
+                  position: const BadgePosition(
+                    end: 10,
+                    top: 10,
+                  ),
+                  padding:
+                      const EdgeInsets.all(5),
+                  child: IconButton(
+                      onPressed: () {
+                        Get.to(
+                          const NotificationsPage(),
+                          duration:
+                              const Duration(
+                                  milliseconds:
+                                      300),
+                          transition: Transition
+                              .rightToLeft,
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      icon: const Icon(
+                        Ionicons
+                            .notifications_outline,
+                        size: 30,
+                      )),
+                );
+              }),
           toolbarHeight: 68,
           actions: [
-            Container(
-                margin: const EdgeInsets.all(10),
-                width: Get.width * .13,
-                child: const Icon(
-                  Ionicons.person_outline,
-                  color: Colors.white,
-                ))
+            InkWell(
+              onTap: () {},
+              child: Container(
+                  margin:
+                      const EdgeInsets.all(10),
+                  width: Get.width * .13,
+                  child: const Icon(
+                    Ionicons.person_outline,
+                    color: Colors.white,
+                  )),
+            )
           ],
         ),
         body: Column(
@@ -52,7 +103,6 @@ class HomePage extends StatelessWidget {
 
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-              
                   stream: postsController
                       .collectionStream,
                   builder: (BuildContext context,
@@ -66,9 +116,31 @@ class HomePage extends StatelessWidget {
                     if (snapshot
                             .connectionState ==
                         ConnectionState.waiting) {
-                      return const Text(
-                          "Loading");
-                          
+                      return const Center(
+                          child:
+                              CircularProgressIndicator(
+                        color: AppColor.secondry,
+                      ));
+                    }
+                    if (snapshot
+                        .data!.docs.isEmpty) {
+                      return Center(
+                          child: Column(
+                        children: [
+                          Image.asset(
+                              'assets/images/Posts-rafiki.png'),
+                          const Text(
+                            'There is no posts yet',
+                            style: TextStyle(
+                                color: Colors
+                                    .black54,
+                                fontSize: 17,
+                                fontFamily:
+                                    AppText
+                                        .light),
+                          )
+                        ],
+                      ));
                     }
 
                     return ListView(
@@ -93,7 +165,6 @@ class HomePage extends StatelessWidget {
                           child: Column(
                             children: [
                               AppPostHeadViewer(
-                                
                                   date: data[
                                       'date'],
                                   personName: data[
@@ -114,14 +185,15 @@ class HomePage extends StatelessWidget {
                                 height: 15,
                               ),
                               AppPostImageViewer(
-                                imageUrls:
-                                    data['imageUrls'],
+                                imageUrls: data[
+                                    'imageUrls'],
                               ),
                               const SizedBox(
                                 height: 15,
                               ),
                               AppPostReactionBarViewer(
-                                postId: document.id,
+                                postId:
+                                    document.id,
                                 likes:
                                     data['likes'],
                               ),
@@ -131,57 +203,8 @@ class HomePage extends StatelessWidget {
                       }).toList(),
                     );
                   }),
-
-           
             ),
           ],
         ));
   }
 }
-   /* ListView.separated(
-                padding: EdgeInsets.zero,
-                separatorBuilder:
-                    (context, index) {
-                  return const SizedBox(
-                    height: 10,
-                  );
-                },
-                itemCount: data.length,
-                itemBuilder:
-                    (BuildContext context,
-                        int index) {
-                  return Container(
-                    width: Get.width,
-                    color: Colors.white,
-                    margin: const EdgeInsets.only(
-                        bottom: 10),
-                    padding:
-                        const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        AppPostHeadViewer(
-                          index: index + 1,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        AppPostTextViewer(
-                          index: index + 1,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        AppPostImageViewer(
-                          index: index + 1,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        AppPostReactionBarViewer(
-                          index: index + 1,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),*/

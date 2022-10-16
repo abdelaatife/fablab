@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fablab/controller/home/posts_controller.dart';
-import 'package:fablab/controller/register/fillepicker_controller.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
-
+ 
 class Test extends StatelessWidget {
   const Test({Key? key}) : super(key: key);
 

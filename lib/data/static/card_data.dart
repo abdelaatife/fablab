@@ -1,6 +1,8 @@
 // static data for cards
 
-import 'package:flutter/material.dart';
+import 'package:fablab/views/screens/register/supervisiorslist.dart';
+import 'package:fablab/views/screens/register/teacher_form_page.dart';
+ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../views/screens/register/student_form_page.dart';
 import '../model/cart_model.dart';
@@ -30,14 +32,37 @@ List<CardModel> cardData = [
     description: "Register as a teacher",
     image: '${path}Math.png',
     color: const Color(0xFFCFC0E9),
-    onTap: () {},
+    
+    onTap: () =>  Get.to(() => const TeacherForm(),
+        transition: Transition.zoom,
+        arguments: [
+          {
+            'title': 'Teacher',
+            'description': 'Register as a teacher',
+            'image': '${path}Math.png',
+            'color': const Color(0xFFCFC0E9),
+          }
+        ],
+        duration:
+            const Duration(milliseconds: 250)),
   ),
   CardModel(
     titel: 'Supervisiors',
     description: "Select a Supervisiors",
     image: '${path}Internship.png',
     color: const Color(0xFFE4F8EA),
-    onTap: () {},
+    onTap: ()  => Get.to(() => const SupervisiorsPage(),
+        transition: Transition.zoom,
+        arguments: [
+          {
+            'title': 'Supervisiors',
+            'description': 'List of Supervisiors',
+            'image': '${path}Internship.png',
+            'color': const Color(0xFFE4F8EA),
+          }
+        ],
+        duration:
+            const Duration(milliseconds: 250)),
   ),
   CardModel(
     titel: 'Personnel',

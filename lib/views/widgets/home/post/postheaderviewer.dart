@@ -1,7 +1,5 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fablab/core/constant/style.dart';
-import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:jiffy/jiffy.dart';
@@ -40,9 +38,9 @@ class AppPostHeadViewer extends StatelessWidget {
              personName,
               style: const TextStyle(
                   fontSize: 17,
-                  height: 1.5,
-                  fontFamily: AppText.medium,
-                  fontWeight: FontWeight.bold),
+                  height: 1.3,
+                  fontFamily: AppText.light,
+                  fontWeight: FontWeight.w500),
             ),
             Text(
               Jiffy(date.toDate()).format('dd/MM/yyyy'),

@@ -1,7 +1,6 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:fablab/core/constant/style.dart';
-import 'package:fablab/data/static/data.dart';
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 
 class AppPostTextViewer extends StatelessWidget {
    final String text;
@@ -15,16 +14,12 @@ class AppPostTextViewer extends StatelessWidget {
     return Column(
       children: [
         //title
-        Row(
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontFamily: AppText.bold,
-                  fontWeight: FontWeight.w500),
-            ),
-          ],
+        Text(
+          title,
+          style: const TextStyle(
+              fontSize: 20,
+              fontFamily: AppText.light,
+              fontWeight: FontWeight.w500),
         ),
         const SizedBox(
           height: 10,

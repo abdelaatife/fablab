@@ -84,9 +84,13 @@ class AppRegisterPage extends StatelessWidget {
                   builder: (controller) {
                     return Badge(
                       // variable badge content
-                      showBadge: true,
+                      showBadge: controller.lenght == 0
+                          ? false
+                          : true,
                       badgeContent: Text(
-                        "5",
+                        controller
+                            .lenght
+                            .toString(),
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 11),

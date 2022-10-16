@@ -1,6 +1,8 @@
 import 'package:fablab/controller/register/fillepicker_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fablab/views/screens/personnel_page.dart';
+import 'package:fablab/views/screens/dashboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:firebase_performance/firebase_performance.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ abstract class StudentFormController
   CollectionReference students = FirebaseFirestore
       .instance
       .collection('Students');
+      FirebasePerformance performance = FirebasePerformance.instance;
 //get file picker controller
   FilepickerControllerImpl controllerImpl =
       Get.put(FilepickerControllerImpl());
@@ -34,7 +37,8 @@ abstract class StudentFormController
     '4th Year',
     '5th Year',
   ];
-
+  final String userid =
+      FirebaseAuth.instance.currentUser!.uid;
   validtor();
   uploadFile();
   addUser();
@@ -51,6 +55,7 @@ class StudentFormControllerImpl
     phoneController = TextEditingController();
     supervisorIdController =
         TextEditingController();
+
     super.onInit();
   }
 
@@ -96,10 +101,15 @@ class StudentFormControllerImpl
 // upload file
   @override
   uploadFile() async {
+    // start trace
+    final trace = performance.newTrace('upload_file_student_form');
+    trace.start();
+    trace.setMetric('upload_file_student_form', 1);
+
     try {
       Reference reference = FirebaseStorage
           .instance
-          .ref()
+          .ref('Students/$userid')
           .child(controllerImpl.fileName);
 
       reference.putFile(controllerImpl.file).then(
@@ -110,6 +120,7 @@ class StudentFormControllerImpl
                 addUser();
               }));
       update();
+      trace.stop();
     } catch (e) {
       Get.snackbar(
         'Error',
@@ -118,34 +129,45 @@ class StudentFormControllerImpl
         colorText: Colors.white,
         backgroundColor: Colors.red,
       );
+      trace.stop();
     }
   }
 
 // add user
   @override
   addUser() async {
+    // start trace
+    final trace = performance.newTrace('add_user_student_form');
+    trace.start();
+    trace.setMetric('add_user_student_form', 1);
     try {
-      students.add({
-        "fullname": fullnameController.text,
-        "cardnumber": cardnumberController.text,
-        "phone": phoneController.text,
-        "year": yearController,
-        "supervisorId":
+      students.doc(userid).set({
+        'fullname': fullnameController.text,
+        'cardnumber': cardnumberController.text,
+        'phone': phoneController.text,
+        'year': yearController,
+        'fillUrl': fillUrl,
+        'date': DateTime.now(),
+        'status': 'waiting',
+        'supervisorId':
             supervisorIdController.text,
-        "fileUrl": fillUrl,
       }).then((value) {
-        Get.snackbar("Success",
-            "your request has been sent",
-            snackPosition: SnackPosition.TOP,
-            colorText: Colors.white,
-            backgroundColor: Colors.green);
-        Get.to(const Personnel());
+        Get.snackbar(
+          'Success',
+          'Student added successfully',
+          snackPosition: SnackPosition.TOP,
+          colorText: Colors.white,
+          backgroundColor: Colors.green,
+        );
+        Get.off(() => const Dashboard());
+        trace.stop();
       });
     } catch (e) {
       Get.snackbar("Error", e.toString(),
           snackPosition: SnackPosition.TOP,
           colorText: Colors.white,
           backgroundColor: Colors.red);
+      trace.stop();
     }
   }
 }

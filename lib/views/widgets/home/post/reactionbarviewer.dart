@@ -1,19 +1,20 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fablab/controller/home/posts_controller.dart';
 import 'package:fablab/core/constant/style.dart';
-import 'package:fablab/data/static/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
 
+import '../../../screens/home/comments_page.dart';
+
 class AppPostReactionBarViewer
     extends StatelessWidget {
   final int likes;
-    final String postId;
+  final String postId;
 
   const AppPostReactionBarViewer({
     Key? key,
-    required this.likes, required this.postId,
+    required this.likes,
+    required this.postId,
   }) : super(key: key);
 
   @override
@@ -28,40 +29,48 @@ class AppPostReactionBarViewer
           mainAxisAlignment:
               MainAxisAlignment.spaceEvenly,
           children: [
-            LikeButton(
-              likeCount: likes,
-              size: 30,
-              likeBuilder: (isLiked) {
-                return Icon(
-                  Icons.diamond_outlined,
-                  color: isLiked
-                      ? AppColor.secondry
-                      : Colors.grey,
-                  size: 25,
+            GetBuilder<PostsControllerImpl>(
+              init: postsController,
+              builder: (controller) {
+                return LikeButton(
+                  likeCount: likes,
+                  size: 30,
+                  likeBuilder: (isLiked) {
+                    return Icon(
+                      Icons.diamond_outlined,
+                      color: controller.isLiked
+                          ? AppColor.secondry
+                          : Colors.grey,
+                      size: 25,
+                    );
+                  },
+                  onTap: (isLiked) {
+                    postsController
+                        .likePost(postId);
+                    return Future.value(!isLiked);
+                  },
+                  countBuilder:
+                      (count, isLiked, text) {
+                    var color = controller.isLiked
+                        ? Colors.indigo
+                        : Colors.grey;
+                    Widget result;
+                    if (count == 0) {
+                      result = Text(
+                        "Valuable",
+                        style: TextStyle(
+                            color: color),
+                      );
+                    } else {
+                      result = Text(
+                        text,
+                        style: TextStyle(
+                            color: color),
+                      );
+                    }
+                    return result;
+                  },
                 );
-              },
-
-             
-              countBuilder:
-                  (count, isLiked, text) {
-                var color = isLiked
-                    ? Colors.indigo
-                    : Colors.grey;
-                Widget result;
-                if (count == 0) {
-                  result = Text(
-                    "Valuable",
-                    style:
-                        TextStyle(color: color),
-                  );
-                } else {
-                  result = Text(
-                    text,
-                    style:
-                        TextStyle(color: color),
-                  );
-                }
-                return result;
               },
             ),
 
@@ -75,7 +84,16 @@ class AppPostReactionBarViewer
               likeCount: 0,
               size: 30,
               onTap: (isLiked) {
-                // Get.to(const CommentsPage());
+                Get.to(
+                  CommentsPage(
+                    id: postId,
+                  ),
+                  duration: const Duration(
+                      milliseconds: 500),
+                  transition: Transition
+                      .rightToLeftWithFade,
+                  curve: Curves.easeIn,
+                );
                 return Future.value(false);
               },
               likeBuilder: (isLiked) {

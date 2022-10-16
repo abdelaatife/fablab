@@ -5,7 +5,10 @@ import 'package:ionicons/ionicons.dart';
 import '../../../controller/register/fillepicker_controller.dart';
 
 class AppPickFile extends StatelessWidget {
-  const AppPickFile({Key? key}) : super(key: key);
+  final String label;
+  const AppPickFile(
+      {Key? key, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +22,9 @@ class AppPickFile extends StatelessWidget {
           padding: const EdgeInsets.only(
               top: 20, bottom: 10, left: 5),
           child: Row(
-            children: const [
+            children:   [
               Text(
-                  'Upload a Discrption for your project'),
+                   label,),
             ],
           ),
         ),
