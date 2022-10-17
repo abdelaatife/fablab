@@ -131,7 +131,10 @@ class TetchearFormControllerImpl
             sepiclizationController.text,
         'officenumber':
             officenumberController.text,
-        'image': fillUrl,
+        'fileUrl': fillUrl,
+        'date': DateTime.now(),
+        'id': 'FL${officenumberController.text}',
+        'status' : 'waiting'
       }).then((value) {
         Get.snackbar(
           'Success',
