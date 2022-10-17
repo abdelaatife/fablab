@@ -1,4 +1,5 @@
 import 'package:fablab/views/screens/auth/forgetpassword/resetpassword.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
  
@@ -19,7 +20,7 @@ class ForgetPasswordControllerImp
 
   @override
   goToverfiyCode() {
-     // FirebaseAuth.instance.sendPasswordResetEmail(email: email.text).then((value) => Get.to(() => const ResetPassword()));
+   FirebaseAuth.instance.sendPasswordResetEmail(email: email.text).then((value) => Get.to(() => const ResetPassword()));
      Get.to(() => const ResetPassword() );
   }
 

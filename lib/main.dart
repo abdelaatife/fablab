@@ -6,12 +6,14 @@ import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
- 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-   FirebasePerformance.instance
+  FirebasePerformance.instance
       .newTrace('main_trace');
+  FirebaseCrashlytics.instance
+      .checkForUnsentReports();
   runApp(const MyApp());
 }
 
